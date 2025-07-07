@@ -367,7 +367,7 @@ def reset_all():
     for i in range(MAX_PARAMS):
         initial_data_headers[i].text = f"<b>{param_name_inputs[i].value or f'Param {i+1}'}</b>"
 
-    update_status("🟢 Ready. Define your optimization problem.")
+    update_status("🟢 Ready. Define optimization problem.")
     set_ui_state(phase='setup')
 
 def update_status(message, is_error=False):
@@ -390,7 +390,7 @@ def update_status(message, is_error=False):
 
 
 # --- UI Widget Definitions ---
-setup_title = Div(text="<h2>1. Define Your Optimization Problem</h2>")
+setup_title = Div(text="<h2>1. Define Optimization Problem</h2>")
 num_params_spinner = Spinner(title="Number of Input Parameters", low=1, high=20, step=1, value=2, width=200)
 objective_name_input = TextInput(title="Objective Name (e.g., Yield, Purity):", value="Objective")
 # CHANGED: Replaced CheckboxGroup with RadioButtonGroup for single selection
@@ -419,7 +419,7 @@ for i in range(MAX_PARAMS):
     high_spinner.on_change('value', partial(on_param_range_change, i))
 
 
-initial_data_title = Div(text="<h4>(Optional) Enter Existing Experimental Data</h4>")
+initial_data_title = Div(text="<h4>Enter Existing Experimental Data (Optional)</h4>")
 initial_data_spinner = Spinner(title="Number of existing data points:", low=0, high=10, step=1, value=0, width=200)
 
 warning_text = """
@@ -455,7 +455,7 @@ suggestion_div = Div()
 actual_result_input = Spinner(title="Enter Measured Objective Value:", value=None, step=0.01)
 submit_result_button = Button(label="Submit Result & Update Model", button_type="warning", width=400)
 
-status_div = Div(text="🟢 Ready. Define your optimization problem.")
+status_div = Div(text="🟢 Ready. Define optimization problem.")
 best_result_div = Div()
 data_table = DataTable(source=experiments_source, columns=[TableColumn(field="Iteration", title="Iteration"), TableColumn(field="Objective", title="Objective")], width=600, height=200, editable=False)
 p_conv = figure(height=300, width=600, title="Convergence Plot", x_axis_label="Iteration", y_axis_label="Best Objective Value")
@@ -508,7 +508,7 @@ doc.add_root(main_layout)
 # --- Document Ready Handler ---
 def on_doc_ready():
     set_ui_state(phase='setup')
-    update_status("🟢 Ready. Define your optimization problem.")
+    update_status("🟢 Ready. Define optimization problem.")
     for i in range(num_params_spinner.value):
         on_param_range_change(i, None, None, None)
 
