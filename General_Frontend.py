@@ -19,7 +19,7 @@ from bokeh.models import (
     Div,
     Spinner,
     TextInput,
-    RadioButtonGroup, # CHANGED: Imported RadioButtonGroup instead of CheckboxGroup
+    RadioButtonGroup,
     DataTable,
     TableColumn,
     NumberFormatter,
