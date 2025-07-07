@@ -19,7 +19,7 @@ from bokeh.models import (
     Div,
     Spinner,
     TextInput,
-    CheckboxGroup,
+    RadioButtonGroup, # CHANGED: Imported RadioButtonGroup instead of CheckboxGroup
     DataTable,
     TableColumn,
     NumberFormatter,
@@ -83,7 +83,6 @@ def on_initial_data_change(attr, old, new):
             for j in range(MAX_PARAMS):
                 initial_param_inputs[i][j].visible = (j in active_param_indices)
     
-    # Update warning visibility based on the spinner's value
     update_initial_points_warning(new)
 
 def on_objective_name_change(attr, old, new):
@@ -132,7 +131,8 @@ def lock_in_setup():
         config = {
             "num_params": num_params_spinner.value,
             "objective_name": objective_name_input.value or "Objective",
-            "maximize": 0 in objective_type_select.active,
+            # CHANGED: Logic updated for RadioButtonGroup (active is an int)
+            "maximize": objective_type_select.active == 0,
             "surrogate_model": surrogate_select.value,
             "acq_func": acq_func_select.value,
             "initial_random_points": max(5, initial_data_spinner.value),
@@ -393,7 +393,8 @@ def update_status(message, is_error=False):
 setup_title = Div(text="<h2>1. Define Your Optimization Problem</h2>")
 num_params_spinner = Spinner(title="Number of Input Parameters", low=1, high=20, step=1, value=2, width=200)
 objective_name_input = TextInput(title="Objective Name (e.g., Yield, Purity):", value="Objective")
-objective_type_select = CheckboxGroup(labels=["Maximize", "Minimize"], active=[0])
+# CHANGED: Replaced CheckboxGroup with RadioButtonGroup for single selection
+objective_type_select = RadioButtonGroup(labels=["Maximize", "Minimize"], active=0)
 
 MAX_PARAMS = 20
 param_rows, param_name_inputs, param_low_spinners, param_high_spinners = [], [], [], []
