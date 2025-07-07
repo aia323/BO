@@ -83,7 +83,7 @@ def on_initial_data_change(attr, old, new):
             for j in range(MAX_PARAMS):
                 initial_param_inputs[i][j].visible = (j in active_param_indices)
     
-    # MODIFICATION: Update warning visibility based on the spinner's value
+    # Update warning visibility based on the spinner's value
     update_initial_points_warning(new)
 
 def on_objective_name_change(attr, old, new):
