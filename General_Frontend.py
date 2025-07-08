@@ -419,7 +419,7 @@ for i in range(MAX_PARAMS):
     high_spinner.on_change('value', partial(on_param_range_change, i))
 
 
-initial_data_title = Div(text="<h4>Enter Existing Experimental Data (Optional)</h4>")
+initial_data_title = Div(text="<h4>Enter Existing Experimental Data (Recommended)</h4>")
 initial_data_spinner = Spinner(title="Number of existing data points:", low=0, high=10, step=1, value=0, width=200)
 
 warning_text = """
